@@ -7,13 +7,13 @@ namespace ConstupFoss\PhpCollections\Exceptions;
 use Exception;
 
 /**
- * Exceptions thrown by `constup/php-collections` library.
+ * Exceptions thrown by the `constup-foss/php-collections` library.
  */
 abstract class LibraryException extends Exception implements LibraryExceptionInterface
 {
     protected string $type;
     protected ?string $debugMessage;
-    protected string $libraryName = 'constup/php-collections';
+    protected string $libraryName = 'constup-foss/php-collections';
 
     public function getType(): string
     {
