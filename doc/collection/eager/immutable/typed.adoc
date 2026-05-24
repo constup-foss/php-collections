@@ -73,7 +73,7 @@ use ConstupFoss\PhpCollections\Exceptions\Exceptions\CollectionValidationExcepti
 readonly class YourTypeCollection extends Collection
 {
     /**
-     * @param array<Attribute> $items
+     * @param array<YourType> $items
      * @param CollectionValidatorInterface $collectionValidator
      * @throws CollectionValidationException
      */
