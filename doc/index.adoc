@@ -1,0 +1,82 @@
+= constUP PHP Collections
+:toc:
+:toclevels: 5
+
+== Available collections
+
+The following collections are implemented. Their documentation is available on linked pages:
+
+* link:collection/eager/immutable/untyped.adoc[Eager, immutable, untyped collection]
+* link:collection/eager/immutable/typed.adoc[Eager, immutable, typed collection]
+
+== Definitions
+
+.Notes and disclaimers:
+[NOTE]
+====
+Individual definitions are added here *only* when a full-featured collection is already implemented in this library.
+
+Some definitions may reflect standards that are implemented in this library and may or may not be compatible with
+general definitions, as described in theory.
+
+This documentation is intended to be used as documentation for this project, not to be a general purpose learning
+material. While this project's goal is to provide general purpose collections, as defined in programming theory, its
+implementation details may vary from the theoretical definitions (ex. to provide performance improvements or specific
+features).
+====
+
+=== Collection vs. Maps/Dictionaries
+
+Collections, in PHP sense of the word, are usually **wrappers around sequential lists**. **Associative arrays** need a
+different set of features to handle them effectively and are usually **implemented as Maps/Dictionaries** (not
+Collections).
+
+=== Collection types
+
+==== Sequential list (array) collections
+
+Sequential list collections are `readonly` wrappers around a public `array` that is in a form of a sequential list
+(simple arrays with sequential `int` indexes `0...n`, for example: `[ 'foo', 'bar', 'baz']`).
+
+Sequential list collections in this library:
+
+* Do not implement `ArrayAccess` interface.
+* Do not implement `Countable` interface.
+
+The reason for this is that sequential list collections are wrappers around `public` arrays. All operations that these
+interfaces provide are already implemented on the language level, and you are free to use them directly on the `items`
+array of a collection.
+
+==== Eager collections
+
+While **eager collections** do contain some lazy methods (returning Generators), they are in their base **wrappers
+around an `array`, not `iterable`**. Depending on immutability or mutability of their array, direct write access to
+their array may or may not be possible.
+
+All eager collections in this library have their `items` array `public`, meaning that there is always direct reading
+access (`$array = $collection->items;`). The collection class itself may or may not be `readonly` to control
+immutability.
+
+==== Immutable collections
+
+**Immutable collections** are `readonly` wrappers around items that can only be modified by using methods of the
+collection, not directly. Being immutable, each operation that modifies the internal array in any way
+**will return a new instance** of the `Collection`. Combined with **constructor-based validation**, this makes them
+suitable to be **used as properties in Value Objects** when using Domain Driven Design (DDD).
+
+==== Untyped collections
+
+An **untyped collection** is a wrapper around items (arrays or iterables, depending on their laziness state) **without
+type safety** built in. The only **validation** performed in its constructor is that its `items` **is a sequential
+list**.
+
+Untyped collections are suitable for dealing with arrays of scalars (`int`, `string`, `float`, ...) . If your collection
+should deal with arrays of strictly typed objects, use Typed collections. Untyped collections have slightly better
+performance than typed ones, since type-safety checks are not performed each time a collection is instantiated.
+
+==== Typed collections
+
+A **typed collection** is a wrapper around an `array` with built-in type safety. A `string $type` must be provided when
+instantiating this collection. Elements of the internal `items` array will be type checked against the provided type.
+
+Typed collections are suitable for dealing with arrays of typed objects (`YourClass`, `YourDTO`, ...) .

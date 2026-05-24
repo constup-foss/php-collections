@@ -1,0 +1,45 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace ConstupFoss\PhpCollections\Collection\Eager\Immutable\Typed\Array;
+
+use ConstupFoss\PhpCollections\Exceptions\Exceptions\CollectionValidationException;
+use ConstupFoss\PhpCollections\Utility\TypeValidator\TypeValidatorInterface;
+
+readonly class CollectionValidator implements CollectionValidatorInterface
+{
+    /**
+     * @param TypeValidatorInterface $typeValidator
+     */
+    public function __construct(
+        private TypeValidatorInterface $typeValidator
+    ) {
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function validateItemTypes(
+        array $items,
+        string $type,
+    ): void {
+        foreach ($items as $index => $item) {
+            if (!$this->typeValidator->assertType($item, $type)) {
+                throw new CollectionValidationException()
+                    ->invalidItemTypeAtIndex(get_debug_type($index), $type, $index);
+            }
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function validateArrayIsList(array $items): void
+    {
+        if (!array_is_list($items)) {
+            throw new CollectionValidationException()
+                ->arrayIsNotAList();
+        }
+    }
+}

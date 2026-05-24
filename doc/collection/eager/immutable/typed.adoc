@@ -1,0 +1,109 @@
+= Typed immutable eager collection
+:toc:
+:toclevels: 5
+
+== Definition
+
+Link: link:../../../../src/Collection/Eager/Immutable/Typed/Array/Collection.php[Collection]
+
+[source,php]
+----
+readonly class Collection implements
+    CollectionInterface,
+    IteratorAggregate,
+    Countable
+{
+    /**
+     * @param array                        $items
+     * @param string                       $type
+     * @param CollectionValidatorInterface $collectionValidator
+     *
+     * @throws CollectionValidationException
+     */
+    public function __construct(
+        public array $items,
+        public string $type,
+        private CollectionValidatorInterface $collectionValidator,
+    )
+----
+
+== Description
+
+This collection is intended to be used as a `readonly` wrapper around a public array of typed objects. Internal array
+can be read freely, but cannot be written to directly without using the collection methods. Elements of the internal
+array are validated against the provided type on each modification operation.
+
+[IMPORTANT]
+====
+This collection is best used in Value Objects that need to have collection properties.
+====
+
+This is a:
+
+* Typed collection - elements of the internal array are validated against the provided type;
+* Immutable collection - internal array can only be modified by using the collection. The collection itself cannot be
+modified. Each modification of the internal array will return a new instance of the collection.
+* Eager collection - The collection is a wrapper around an `array`. Some methods may be lazy, but the collection itself
+is not.
+
+For more technical details see link:../../../index.adoc[Documentation index].
+
+Complete list of available methods in the Collection and their documentation is available in collection's interface:
+link:../../../../src/Collection/Eager/Immutable/Typed/Array/CollectionInterface.php[`CollectionInterface.php]
+
+== Use
+
+=== Creating `YourTypeCollection`
+
+To better define types in your code, you can extend this collection and create your own with the `YourTypeCollection`
+type. To do that, simply extend this collection and redefine its constructor:
+
+[source,php]
+----
+<?php
+
+declare(strict_types = 1);
+
+namespace App\YourNamespace;
+
+use ConstupFoss\PhpCollections\Collection\Eager\Immutable\Typed\Array\Collection;
+use ConstupFoss\PhpCollections\Collection\Eager\Immutable\Typed\Array\CollectionValidatorInterface;
+use ConstupFoss\PhpCollections\Exceptions\Exceptions\CollectionValidationException;
+
+readonly class YourTypeCollection extends Collection
+{
+    /**
+     * @param array<Attribute> $items
+     * @param CollectionValidatorInterface $collectionValidator
+     * @throws CollectionValidationException
+     */
+    public function __construct(
+        array $items,
+        CollectionValidatorInterface $collectionValidator,
+    ) {
+        parent::__construct(
+            $items,
+            YourType::class,
+            $collectionValidator,
+        );
+    }
+}
+----
+
+That's it. Your collection is now ready to be used:
+
+[source,php]
+----
+readonly class YourValueObject
+{
+    public function __construct(
+        public YourTypeCollection $yourTypeCollection
+    ) {}
+}
+----
+
+== Links
+
+* link:../../../index.adoc[Documentation Home]
+* link:../../../../src/Collection/Eager/Immutable/Typed/Array/[Source code]
+

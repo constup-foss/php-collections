@@ -1,0 +1,50 @@
+= constUP PHP Collections
+:toc:
+:toclevels: 5
+
+image:https://img.shields.io/badge/PHP-^8.5-blue[Static Badge]
+image:https://img.shields.io/badge/License-MIT-green[Static Badge]
+image:https://img.shields.io/packagist/dt/constup-foss/php-collections[Packagist Downloads]
+
+== Description
+
+A set of ready-to-use collections for PHP.
+
+The main goal of this library is to provide a set of reusable, independent, standalone collections classified by their
+features and intended use scenarios. It is developed as an alternative to using specific collections from much bigger
+libraries whose focus is on a completely different feature set, but have collections implemented as an internal
+requirement.
+
+In short, if your project needs support for collections, but you don't need DoctrineORM (or any other software package
+that has collections), this library is for you.
+
+== Installation
+
+[source]
+----
+composer require constup-foss/php-collections
+----
+
+== Available collections
+
+The following collections are implemented. Their documentation is available on linked pages:
+
+* link:doc/collection/eager/immutable/untyped.adoc[Eager, immutable, untyped collection]
+* link:doc/collection/eager/immutable/typed.adoc[Eager, immutable, typed collection]
+
+Technical documentation is available on a separate documentation page: link:doc/index.adoc[Documentation Home]
+
+== Supporting development
+
+If you like this library or find it useful, consider buying me a nice cup of coffee. Coffee fuels open source.
+
+image:doc/bmac.png[width=197]
+
+link:https://www.buymeacoffee.com/puEW3HvWvP[image:https://cdn.buymeacoffee.com/buttons/v2/default-green.png[width=200]]
+
+== License
+
+MIT License
+
+- License file: link:LICENSE.txt[LICENSE.txt]
+- Online version: https://opensource.org/license/mit

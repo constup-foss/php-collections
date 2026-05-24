@@ -1,0 +1,50 @@
+= Untyped immutable eager collection
+:toc:
+:toclevels: 3
+
+== Definition
+
+Link: link:../../../../src/Collection/Eager/Immutable/Untyped/Array/Collection.php[Collection]
+
+[source,php]
+----
+readonly class Collection implements
+    CollectionInterface,
+    IteratorAggregate,
+    Countable
+{
+    /**
+     * @param array                        $items
+     * @param CollectionValidatorInterface $collectionValidator
+     *
+     * @throws CollectionValidationException
+     */
+    public function __construct(
+        public array $items,
+        private CollectionValidatorInterface $collectionValidator,
+    )
+----
+
+== Description
+
+This collection is intended to be used as a `readonly` wrapper around a public untyped array. Internal array
+can be read freely, but cannot be written to directly without using the collection methods. Elements of the internal
+array are not validated against any type.
+
+This is a:
+
+* Untyped collection - elements of the internal array are not validated against any type;
+* Immutable collection - internal array can only be modified by using the collection. The collection itself cannot be
+modified. Each modification of the internal array will return a new instance of the collection.
+* Eager collection - The collection is a wrapper around an `array`. Some methods may be lazy, but the collection itself
+is not.
+
+For more technical details see link:../../../index.adoc[Documentation index].
+
+Complete list of available methods in the Collection and their documentation is available in collection's interface:
+link:../../../../src/Collection/Eager/Immutable/Untyped/Array/CollectionInterface.php[`CollectionInterface.php]
+
+== Links
+
+* link:../../../index.adoc[Documentation home]
+* link:../../../../src/Collection/Eager/Immutable/Untyped/[Source code]
