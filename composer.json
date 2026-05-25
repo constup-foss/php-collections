@@ -11,7 +11,8 @@
   "readme": "README.adoc",
   "license": "MIT",
   "require": {
-    "php": ">=8.5"
+    "php": ">=8.5",
+    "constup-foss/php-exerr": "^1.0"
   },
   "autoload": {
     "psr-4": {
