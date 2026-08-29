@@ -13,16 +13,21 @@ readonly class Collection implements
     IteratorAggregate,
     Countable
 {
+    private CollectionValidatorInterface $collectionValidator;
+
     /**
-     * @param array                        $items
-     * @param CollectionValidatorInterface $collectionValidator
+     * @param array                             $items
+     * @param CollectionValidatorInterface|null $collectionValidator
      *
      * @throws CollectionValidationException
      */
     public function __construct(
         public array $items,
-        private CollectionValidatorInterface $collectionValidator,
-    )
+        ?CollectionValidatorInterface $collectionValidator = null,
+    ) {
+        $this->collectionValidator = $collectionValidator ?? new CollectionValidator();
+        $this->collectionValidator->validateArrayIsList($this->items);
+    }
 ----
 
 == Description
@@ -43,6 +48,15 @@ For more technical details see link:../../../index.adoc[Documentation index].
 
 Complete list of available methods in the Collection and their documentation is available in collection's interface:
 link:../../../../src/Collection/Eager/Immutable/Untyped/Array/CollectionInterface.php[`CollectionInterface.php]
+
+== Use
+
+=== Choosing the Collection Validator
+
+`constup-foss/php-collections` provides a default implementation of an untyped
+link:../../../../src/Collection/Eager/Immutable/Untyped/Array/CollectionValidator.php[`CollectionValidator`]. That
+implementation should cover most of the use cases. If no validator argument is provided when instantiating a Collection
+or its CollectionFactory, the default one will be used.
 
 == Links
 
