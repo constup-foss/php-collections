@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace ConstupFoss\PhpCollections\Tests\Unit\Collection\Eager\Immutable\Typed;
 
@@ -29,7 +29,8 @@ class CollectionValidatorTest extends TestCase
         $this->assertEquals($expected, $reflectionTypeValidator);
     }
 
-    public function test_construct_noTypeValidatorProvided_HappyFlow(): void {
+    public function test_construct_noTypeValidatorProvided_HappyFlow(): void
+    {
         $collectionValidator = new CollectionValidator();
         $reflectionProperty = new ReflectionProperty($collectionValidator, 'typeValidator');
         $reflectionTypeValidator = $reflectionProperty->getValue($collectionValidator);

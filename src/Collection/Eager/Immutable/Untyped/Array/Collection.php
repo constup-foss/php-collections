@@ -18,7 +18,7 @@ readonly class Collection implements
     private CollectionValidatorInterface $collectionValidator;
 
     /**
-     * @param array                        $items
+     * @param array                             $items
      * @param CollectionValidatorInterface|null $collectionValidator
      *
      * @throws CollectionValidationException
