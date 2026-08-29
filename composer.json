@@ -17,13 +17,13 @@
   "autoload": {
     "psr-4": {
       "ConstupFoss\\PhpCollections\\": "src"
-    }
+    },
+    "exclude-from-classmap": ["/tests/"]
   },
   "autoload-dev": {
     "psr-4": {
       "ConstupFoss\\PhpCollections\\Tests\\": "tests"
-    },
-    "exclude-from-classmap": ["/tests/"]
+    }
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.95",

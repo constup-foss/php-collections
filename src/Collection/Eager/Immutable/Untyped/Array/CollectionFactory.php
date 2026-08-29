@@ -8,12 +8,15 @@ use ConstupFoss\PhpCollections\Exceptions\Exceptions\CollectionValidationExcepti
 
 readonly class CollectionFactory
 {
+    private CollectionValidatorInterface $collectionValidator;
+
     /**
-     * @param CollectionValidatorInterface $collectionValidator
+     * @param CollectionValidatorInterface|null $collectionValidator
      */
     public function __construct(
-        private CollectionValidatorInterface $collectionValidator,
+        ?CollectionValidatorInterface $collectionValidator = null,
     ) {
+        $this->collectionValidator = $collectionValidator ?? new CollectionValidator();
     }
 
     /**

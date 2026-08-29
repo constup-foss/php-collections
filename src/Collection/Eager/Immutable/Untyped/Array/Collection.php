@@ -15,16 +15,19 @@ readonly class Collection implements
     IteratorAggregate,
     Countable
 {
+    private CollectionValidatorInterface $collectionValidator;
+
     /**
      * @param array                        $items
-     * @param CollectionValidatorInterface $collectionValidator
+     * @param CollectionValidatorInterface|null $collectionValidator
      *
      * @throws CollectionValidationException
      */
     public function __construct(
         public array $items,
-        private CollectionValidatorInterface $collectionValidator,
+        ?CollectionValidatorInterface $collectionValidator = null,
     ) {
+        $this->collectionValidator = $collectionValidator ?? new CollectionValidator();
         $this->collectionValidator->validateArrayIsList($this->items);
     }
 

@@ -5,16 +5,20 @@ declare(strict_types = 1);
 namespace ConstupFoss\PhpCollections\Collection\Eager\Immutable\Typed\Array;
 
 use ConstupFoss\PhpCollections\Exceptions\Exceptions\CollectionValidationException;
+use ConstupFoss\PhpCollections\Utility\TypeValidator\TypeValidator;
 use ConstupFoss\PhpCollections\Utility\TypeValidator\TypeValidatorInterface;
 
 readonly class CollectionValidator implements CollectionValidatorInterface
 {
+    private TypeValidatorInterface $typeValidator;
+
     /**
-     * @param TypeValidatorInterface $typeValidator
+     * @param TypeValidatorInterface|null $typeValidator
      */
     public function __construct(
-        private TypeValidatorInterface $typeValidator
+        ?TypeValidatorInterface $typeValidator = null
     ) {
+        $this->typeValidator = $typeValidator ?? new TypeValidator();
     }
 
     /**
