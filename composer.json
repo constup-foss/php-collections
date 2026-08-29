@@ -41,7 +41,7 @@
     "phpunit-migrate-configuration": "php vendor/phpunit/phpunit/phpunit --migrate-configuration"
   },
   "scripts-descriptions": {
-    "csfix": "Fix all project's files with PHP CS FIxer.",
+    "csfix": "Fix all project's files with PHP CS Fixer.",
     "csfix-unix-ignore-env": "Fix all project's files with PHP CS Fixer on Unix systems. Ignore environment (PHP version) requirements of PHP CS Fixer.",
     "csfix-windows-ignore-env": "Fix all project's files with PHP CS Fixer on Windows systems. Ignore environment (PHP version) requirements of PHP CS Fixer.",
 
