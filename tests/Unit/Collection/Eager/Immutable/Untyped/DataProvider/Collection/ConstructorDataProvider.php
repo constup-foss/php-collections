@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace ConstupFoss\PhpCollections\Tests\Unit\Collection\Eager\Immutable\Untyped\DataProvider\Collection;
 
@@ -8,7 +8,8 @@ use ConstupFoss\PhpCollections\Collection\Eager\Immutable\Untyped\Array\Collecti
 
 readonly class ConstructorDataProvider
 {
-    public static function provide_HappyFlow(): array {
+    public static function provide_HappyFlow(): array
+    {
         return [
             'Collection validator is provided.' => [
                 'items' => [],
