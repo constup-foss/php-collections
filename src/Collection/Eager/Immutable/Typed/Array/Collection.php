@@ -59,6 +59,8 @@ readonly class Collection implements
 
     /**
      * @inheritDoc
+     *
+     * @throws CollectionValidationException
      */
     public function withItem(mixed $value): Collection
     {
@@ -70,6 +72,8 @@ readonly class Collection implements
 
     /**
      * @inheritDoc
+     *
+     * @throws CollectionValidationException
      */
     public function merge(iterable $iterable): Collection
     {
@@ -85,6 +89,8 @@ readonly class Collection implements
 
     /**
      * @inheritDoc
+     *
+     * @throws CollectionValidationException
      */
     public function withoutItem(int $index): Collection
     {
@@ -102,6 +108,8 @@ readonly class Collection implements
 
     /**
      * @inheritDoc
+     *
+     * @throws CollectionValidationException
      */
     public function withoutItems(array $indexes): Collection
     {
@@ -125,6 +133,8 @@ readonly class Collection implements
 
     /**
      * @inheritDoc
+     *
+     * @throws CollectionValidationException
      */
     public function replaceItem(int $index, mixed $value): Collection
     {
@@ -141,6 +151,8 @@ readonly class Collection implements
 
     /**
      * @inheritDoc
+     *
+     * @throws CollectionValidationException
      */
     public function swapItems(int $firstItemIndex, int $secondItemIndex): Collection
     {
@@ -169,6 +181,8 @@ readonly class Collection implements
 
     /**
      * @inheritDoc
+     *
+     * @throws CollectionValidationException
      */
     public function clear(): Collection
     {
